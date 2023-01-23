@@ -8,21 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
         $role = Auth::user()->role;
@@ -30,9 +20,25 @@ class HomeController extends Controller
         if($role == "Manager")
         {
             $totalUsers = User::where('role', '!=', 'Manager')->count();
-            $totalSales = Sales::sum('total_sales');
 
-            return view('backend.layouts.dashboard', ['totalUsers' => $totalUsers, 'totalSales' => $totalSales]);
+            $totalSales = Sales::whereHas('user', function($query) {
+                $query->where('role', '!=', 'Manager');
+            })->sum('total_sales');
+            
+            $users = User::where('role', '!=', 'Manager')->get();
+            $userSales = [];
+            foreach ($users as $user) {
+                $userSales[$user->id] = Sales::where('user_id', $user->id)->sum('total_sales');
+            }            
+
+            return view('backend.layouts.dashboard', 
+            [
+                'totalUsers' => $totalUsers, 
+                'totalSales' => $totalSales, 
+                'userSales' => $userSales,
+                'users'=>$users,
+            ]);
+
         }else{
             return view('userDashboard');
         }

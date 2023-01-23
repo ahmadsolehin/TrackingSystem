@@ -58,18 +58,11 @@
           @endif
 
           <li class="nav-item">
-            <a href="" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                Sales
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
+                 <i class="nav-icon fas fa-chart-pie"></i>
+
                 {{ __('Logout') }}
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

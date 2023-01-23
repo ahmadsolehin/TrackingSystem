@@ -15,7 +15,7 @@ class SalesTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i <= 4; $i++) {
+        for($i = 2; $i <=5; $i++) {
             Sales::create([
                 'user_id' => $i,
                 'total_sales' => 100*$i,

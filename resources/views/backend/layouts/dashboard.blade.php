@@ -64,26 +64,42 @@
             <div class="card">
               <div class="card-header">
                 <h5 class="card-title">Monthly Recap Report</h5>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-tool dropdown-toggle" data-toggle="dropdown">
-                      <i class="fas fa-wrench"></i>
-                    </button>
-                  
-                  </div>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-8">
+
+                    <div class="table-responsive">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Total Sales</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(!empty($userSales))
+                                    @foreach($userSales as $userId => $sales)
+                                    <tr>
+                                        <td>{{ $users->find($userId)->name }}</td>
+                                        <td>{{ $users->find($userId)->email }}</td>
+                                        <td>{{ $sales }}</td>
+                                        <td>
+                                            <a href="{{ route('sales.view', $userId) }}" class="btn btn-primary">View</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="3" class="text-center">No sales data found</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>                    
                     
                   </div>
                   <!-- /.col -->

@@ -10,4 +10,10 @@ class Sales extends Model
     use HasFactory;
     protected $table = 'sales';
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
+
