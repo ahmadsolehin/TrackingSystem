@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('backend.layouts.app');
+        $role = Auth::user()->role;
+
+
+    //     dd($role);
+        $totalUsers = User::count();
+        return view('backend.layouts.dashboard', ['totalUsers' => $totalUsers]);
     }
 }
