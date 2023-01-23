@@ -8,12 +8,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Admin Panel Dashboard</h1>
+            <h1 class="m-0">Dashboard v2</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Admin Site</li>
+              <li class="breadcrumb-item active">Dashboard v2</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -24,41 +24,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <!-- Info boxes -->
-        <div class="row">
-         
-          <!-- fix for small devices only -->
-          <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-12 col-sm-6 col-md-6">
-            <div class="info-box mb-4">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Total Sales All Seller</span>
-                <span class="info-box-number">{{$totalSales}}</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <div class="col-12 col-sm-6 col-md-6">
-            <div class="info-box mb-4">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Total Seller</span>
-                <span class="info-box-number"> {{ $totalUsers }}</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-
+    
         <div class="row">
           <div class="col-md-12">
             <div class="card">

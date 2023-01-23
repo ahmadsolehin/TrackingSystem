@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Sales;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,9 +27,14 @@ class HomeController extends Controller
     {
         $role = Auth::user()->role;
 
+        if($role == "Manager")
+        {
+            $totalUsers = User::where('role', '!=', 'Manager')->count();
+            $totalSales = Sales::sum('total_sales');
 
-    //     dd($role);
-        $totalUsers = User::count();
-        return view('backend.layouts.dashboard', ['totalUsers' => $totalUsers]);
+            return view('backend.layouts.dashboard', ['totalUsers' => $totalUsers, 'totalSales' => $totalSales]);
+        }else{
+            return view('userDashboard');
+        }
     }
 }
