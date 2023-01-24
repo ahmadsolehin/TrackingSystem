@@ -56,11 +56,11 @@
                       @csrf
                       <div class="form-group">
                         <label for="total-sales">Total Sales</label>
-                        <input type="number" class="form-control" placeholder="Enter total sales">
+                        <input type="number" id="total_sales_add" class="form-control" placeholder="Enter total sales">
                       </div>
                       <div class="form-group">
                         <label for="sale-date">Sale Date</label>
-                        <input type="date" class="form-control" placeholder="Enter sale date">
+                        <input type="date" id="sale_date_add" class="form-control" placeholder="Enter sale date">
                       </div>
                       <div class="form-group">
                           <button type="button" class="btn btn-primary" onclick="addSales()">Save</button>
@@ -181,6 +181,35 @@
 
 <script>
 
+$('#save-edit-btn').on('click', function() {
+  var saleId = $('#sale-id').val();
+  var totalSales = $('#total-sales').val();
+  var saleDate = $('#sale-date').val();
+
+  $.ajax({
+      url: '/sales/' + saleId,
+      type: 'PUT',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      data: {
+        total_sales: totalSales,
+        sale_date: saleDate
+      },
+      success: function(data) {
+          // Handle success
+          alert('Sale updated successfully');
+          $('#editModal').modal('hide');
+          location.reload();
+      },
+      error: function(xhr, status, error) {
+          // Handle error
+          console.log('Error updating sale: ' + error);
+      }
+  });
+});
+
+
 $(document).on('click', '.btn-danger', function(){
   var saleId = $(this).attr('id');
   if(confirm("Are you sure you want to delete this sale?")){
@@ -193,8 +222,6 @@ $(document).on('click', '.btn-danger', function(){
       url: '/sales/' + saleId,
       type: 'DELETE',
       success: function(result) {
-        // Do something with the result, such as removing the sale's row from the table
-        $('#sale-' + saleId).remove();
         alert(result.message);
         location.reload();
       }
@@ -221,8 +248,8 @@ $(document).on('click', '.edit-btn', function() {
 
 
 function addSales() {
-  var totalSales = $("#total-sales").val();
-  var saleDate = $("#sale-date").val();
+  var totalSales = $("#total_sales_add").val();
+  var saleDate = $("#sale_date_add").val();
 
   $.ajax({
     type: "POST",

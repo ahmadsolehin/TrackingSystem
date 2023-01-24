@@ -38,5 +38,14 @@ class SalesController extends Controller
             return response()->json(['error' => 'Sale not found'], 404);
         }
     }
+    public function update(Request $request, $id)
+    {
+        $sale = Sales::findOrFail($id);
+        $sale->total_sales = $request->input('total_sales');
+        $sale->sale_date = $request->input('sale_date');
+        $sale->save();
+
+        return response()->json(['success' => 'Sale updated successfully']);
+    }
 
 }
