@@ -95,7 +95,7 @@
                           <td>{{ $sale->sale_date }}</td>
                           <td>
                             <button type="button" class="edit-btn btn btn-primary" id="{{ $sale->id }}">Edit</button>
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-saleid="{{ $sale->id }}" onclick="return confirm('Are you sure you want to delete this sale?');">Delete</button>
+                            <button type="button" class="btn btn-danger" id="{{ $sale->id }}" >Delete</button>
                           </td>
                         </tr>
                         @endforeach
@@ -180,6 +180,28 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <script>
+
+$(document).on('click', '.btn-danger', function(){
+  var saleId = $(this).attr('id');
+  if(confirm("Are you sure you want to delete this sale?")){
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: '/sales/' + saleId,
+      type: 'DELETE',
+      success: function(result) {
+        // Do something with the result, such as removing the sale's row from the table
+        $('#sale-' + saleId).remove();
+        alert(result.message);
+        location.reload();
+      }
+    });
+  }
+});
+
 
 $(document).on('click', '.edit-btn', function() {
   var saleId = $(this).attr('id');

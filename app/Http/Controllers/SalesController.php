@@ -28,4 +28,15 @@ class SalesController extends Controller
         $sale->save();
         return response()->json(['success' => true]);
     }
+    public function delete($id)
+    {
+        $sale = Sales::find($id);
+        if($sale){
+            $sale->delete();
+            return response()->json(['message' => 'Sale deleted successfully'], 200);
+        }else{
+            return response()->json(['error' => 'Sale not found'], 404);
+        }
+    }
+
 }

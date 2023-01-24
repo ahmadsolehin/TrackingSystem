@@ -25,3 +25,4 @@ Route::get('sales/view/{userId}', [App\Http\Controllers\SalesController::class, 
 Route::post('sales/create', [App\Http\Controllers\SalesController::class, 'create'])->name('create');
 Route::get('sales/{sale}', [App\Http\Controllers\SalesController::class, 'getSales'])->name('getSales');
 Route::put('sales/{id}', [App\Http\Controllers\SalesController::class, 'update'])->name('update');
+Route::delete('sales/{id}', [App\Http\Controllers\SalesController::class, 'delete'])->name('delete');
