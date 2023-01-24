@@ -63,21 +63,20 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5 class="card-title">Monthly Recap Report</h5>
+                <h5 class="card-title">Total Sales All Seller</h5>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-12">
 
                     <div class="table-responsive">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-striped">
                             <thead class="thead-light">
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Total Sales</th>
-                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,9 +86,6 @@
                                         <td>{{ $users->find($userId)->name }}</td>
                                         <td>{{ $users->find($userId)->email }}</td>
                                         <td>{{ $sales }}</td>
-                                        <td>
-                                            <a href="{{ route('sales.view', $userId) }}" class="btn btn-primary">View</a>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 @else

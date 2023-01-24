@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Tracking System</title>
+  <meta name="csrf-token" content="{{ csrf_token() }}" />
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -74,22 +75,38 @@
 
 
 <!-- DataTables  & Plugins -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/jszip/jszip.min.js"></script>
-<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<script src="{{('backend/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{('backend/plugins/jszip/jszip.min.js')}}"></script>
+<script src="{{('backend/plugins/pdfmake/pdfmake.min.js')}}"></script>
+<script src="{{('backend/plugins/pdfmake/vfs_fonts.js')}}"></script>
+<script src="{{('backend/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+<script src="{{('backend/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+
+
+<!-- ChartJS -->
+<script src="{{('backend/plugins/chart.js/Chart.min.js')}}"></script>
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{('backend/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{('backend/dist/js/pages/dashboard2.js')}}"></script>
+
+
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+</script>
+
 </body>
 </html>

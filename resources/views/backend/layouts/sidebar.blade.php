@@ -43,20 +43,6 @@
             </a>
           </li>
 
-          @if(auth()->user()->role == 'Manager')
-
-          <li class="nav-item">
-            <a href="" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
-                <p>
-                Seller
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
-
-          @endif
-
           <li class="nav-item">
             <a class="nav-link" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
